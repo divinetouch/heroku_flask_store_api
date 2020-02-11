@@ -8,13 +8,11 @@ from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
-# pylint: disable=invalid-name
-
 load_dotenv()
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.getenv('SECRET_KEY')
 api = Api(app)
